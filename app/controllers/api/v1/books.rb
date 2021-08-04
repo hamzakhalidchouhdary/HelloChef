@@ -1,7 +1,12 @@
 module API
   module V1
     class Books < Grape::API
+      helpers V1::AuthHelpers
+
       namespace :books do
+        before do
+          authenticate_request
+        end
         desc 'Return list of books'
         params do 
         end
