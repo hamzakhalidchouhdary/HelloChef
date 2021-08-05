@@ -5,6 +5,7 @@ module API
       format :json
       
       mount V1::Books
+      mount V1::Signup
     end
   end
 end

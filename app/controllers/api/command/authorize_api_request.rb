@@ -9,7 +9,6 @@ module API
       end
 
       def call
-        return to_json {"msg" => "unathorized"}
         user
       end
 

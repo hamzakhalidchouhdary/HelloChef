@@ -2,16 +2,14 @@ module API
   module V1
     class Books < Grape::API
       helpers V1::AuthHelpers
+      before { authenticate }
 
       namespace :books do
-        before do
-          authenticate_request
-        end
         desc 'Return list of books'
         params do 
         end
         get do
-          {'msg' => "Hello World!!!", "status" => 220, "text" => "oh yes!!"}
+          {'msg' => "Hello World!!!", "status" => 220, "text" => "oh yes!!", "token" => @auth_token}
         end
 
         get ":name" do
