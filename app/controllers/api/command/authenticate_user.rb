@@ -10,7 +10,7 @@ module API
       end
 
       def call
-        JsonWebToken.encode(user_id: user.id) if user
+        JsonWebToken.encode(user_id: user.id, role: user.role) if user
       end
 
       private
@@ -18,10 +18,12 @@ module API
       attr_accessor :email, :password
 
       def user
-        user = User.find_by_email(email)
+        user = User.unscoped.find_by_email(email)
+        user.role = 'admin' if user
+        user = Staff.unscoped.find_by_email(email) unless user
         return user if user && user.authenticate(password)
-        errors.add(:user_authentication, 'invalid credentials')
-        # errors.add :user_authentication, 'invalid credentials'
+        errors.add(:user_authentication, 'incorrect password') if user
+        errors.add(:user_authentication, 'user not register')
         nil
       end
 
