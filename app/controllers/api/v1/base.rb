@@ -8,8 +8,10 @@ module API
       
       mount V1::Login
       mount V1::Signup
-      mount V1::Organization
+      mount V1::MyOrganization
       mount V1::MyStaff
+      mount V1::Me
+      mount V1::MyShop
 
     end
   end

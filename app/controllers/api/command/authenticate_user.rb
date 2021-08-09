@@ -18,9 +18,9 @@ module API
       attr_accessor :email, :password
 
       def user
-        user = User.unscoped.find_by_email(email)
+        user = User.unscoped.find_by_username(email)
         user.role = 'admin' if user
-        user = Staff.unscoped.find_by_email(email) unless user
+        user = Staff.unscoped.find_by_username(email) unless user
         return user if user && user.authenticate(password)
         errors.add(:user_authentication, 'incorrect password') if user
         errors.add(:user_authentication, 'user not register')

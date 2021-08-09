@@ -22,12 +22,14 @@ module API
 
         desc 'create new staff'
         params do
-          requires :email, type: String
+          requires :username, type: String
           requires :password, type: String
           requires :role, type: String
+          requires :shop_id, type: String
         end
         post '/', root: :staff do
           new_staff = Staff.new(params)
+          new_staff.organization_id = @current_user.organization_id
           if new_staff.save
             return {message: 'Staff has been created', staff: new_staff, status: 200}
           else
