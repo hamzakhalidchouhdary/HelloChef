@@ -49,7 +49,7 @@ module API
         if headers['Authorization'].present?
           return headers['Authorization'].split(' ').last
         else
-          errors.add(:token, 'user cannot be authenticated')
+          errors.add(:token, 'missing token')
         end
         nil
       end

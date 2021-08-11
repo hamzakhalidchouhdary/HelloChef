@@ -1,35 +1,44 @@
 module API
   module V1
     class MyStaff < Grape::API
-      before {authenticate_admin}
+      before { authenticate_admin }
+      before { organization_exisit? }
+      before { organization_active? }
+      before { find_shop }
 
       resource :staff do
-
         desc 'return all staff'
-        params do end
+        params do 
+          requires :shop_id, type: String
+        end
         get "", root: :staff do
-          staff_list = Staff.all
-          return {staff: staff_list, status: 200}
+          return {staff: @user_shop.staffs, status: 200}
         end
 
         desc 'return specific staff'
-        params do end
-        get ":id", root: :staff do
-          my_staff = Staff.find_by_id(params[:id])
-          return {staff: my_staff, status: 200} if my_staff
-          return {message: "no staff found", status: 300}
+        params do 
+          requires :shop_id, type: String
+        end
+        get ":staff_id", root: :staff do
+          find_staff
+          return {staff: @staff, status: 200}
         end
 
         desc 'create new staff'
         params do
+          requires :shop_id, type: String
           requires :username, type: String
           requires :password, type: String
           requires :role, type: String
+          requires :name, type: String
           requires :shop_id, type: String
+          optional :salary, type: Integer
+          optional :contact, type: String
+          optional :address, type: String
+
         end
         post '/', root: :staff do
-          new_staff = Staff.new(params)
-          new_staff.organization_id = @current_user.organization_id
+          new_staff = @current_user.organization.staffs.new(params)
           if new_staff.save
             return {message: 'Staff has been created', staff: new_staff, status: 200}
           else
@@ -39,16 +48,16 @@ module API
 
         desc 'update exisiting staff'
         params do
-          requires :email, type: String
-          # requires :password, type: String
-          # requires :role, type: String
+          requires :shop_id, type: String
+          optional :username, type: String
+          requires :password, type: String
+          optional :role, type: String
         end
-        put '/', root: :staff do
-          my_staff = Staff.find_by_email(params[:email])
-          return {message: "no staff found", status: 300} unless my_staff
-          my_staff.update(params)
-          if my_staff.save
-            return {message: 'Staff has been updated', staff: my_staff, status: 200}
+        put ':staff_id', root: :staff do
+          find_staff
+          @staff.update(params.except(:staff_id))
+          if @staff.save
+            return {message: 'Staff has been updated', staff: @staff, status: 200}
           else
             return {error: 'something went wrong', status:400}
           end
@@ -56,14 +65,21 @@ module API
 
         desc 'remove a staff'
         params do
+          requires :shop_id, type: String
         end
-        delete '/:id', root: :staff do
-          my_staff = Staff.find_by_id(params[:id])
-          if my_staff.destroy
-            return {message: 'Staff has been deleted', staff: my_staff, status: 200}
-          else
-            return {error: 'something went wrong', status:400}
-          end
+        delete '/:staff_id', root: :staff do
+          find_staff
+          return {message: 'Staff has been deleted', status: 200} if @staff.destroy
+          return {error: 'something went wrong, try later', status:400}
+        end
+
+        desc 'remove all staff'
+        params do
+          requires :shop_id, type: String
+        end
+        delete '', root: :staff do
+          return {message: 'Staffs has been deleted', status: 200} if @user_shop.staffs.destroy
+          return {error: 'something went wrong, try later', status:400}
         end
         
       end

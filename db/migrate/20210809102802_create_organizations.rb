@@ -5,8 +5,9 @@ class CreateOrganizations < ActiveRecord::Migration[6.1]
       t.string :account_type
       t.string :address
       t.string :status # active | supended
-      t.integer :price
-      t.string :price_type # fixed | percentage
+      t.string :contact_no
+      t.string :email
+      t.integer :shop_limit
 
       t.timestamps
     end

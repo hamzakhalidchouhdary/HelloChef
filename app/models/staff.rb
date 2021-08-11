@@ -1,6 +1,9 @@
 class Staff < ApplicationRecord
   belongs_to :organization
-  # belongs_to :shop
+  belongs_to :shop
+
+  has_many :items
+  has_many :orders
 
   has_secure_password
 

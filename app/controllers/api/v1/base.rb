@@ -12,6 +12,7 @@ module API
       mount V1::MyStaff
       mount V1::Me
       mount V1::MyShop
+      mount V1::MyItem
 
     end
   end

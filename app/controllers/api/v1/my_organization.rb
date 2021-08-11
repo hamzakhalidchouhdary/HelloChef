@@ -5,33 +5,30 @@ module API
 
       resource :organization do
         get "", root: :organization do
-          if @current_user.organization_id
-            my_organization = @current_user.organization 
-            return {organization: my_organization}
-          else
-            return {error: 'no recode found', status: 400}
-          end
+          return {organization: @current_user.organization} unless organization_exisit? && organization_active?
         end
 
         desc 'create basic organization'
         params do 
           requires :name, type: String
           requires :address, type: String
+          requires :contact_no, type: String
+          optional :email, type: String
         end
         post 'basic', root: :organization do
-          p 'creating....'
-          new_organization = Organization.new()
-          new_organization.name = params[:name]
-          new_organization.account_type = 'basic'
-          new_organization.address = params[:address]
-          new_organization.status = 'active'
-          new_organization.price = 1200
-          new_organization.price_type = 'fixed'
-          p new_organization
-          p 'saving'
+          organization_exisit!
+          params[:status] = 'active'
+          params[:shop_limit] = 1
+          params[:account_type] = 'basic'
+          new_organization = Organization.new(params)
           if new_organization.save
             User.unscoped.find(@current_user.id).update(organization_id: new_organization.id)
-            return {organization: new_organization, status: 200}
+            Pricing.new(price: 1200, price_type: 'fixed', currency: 'PKR', organization_id: new_organization.id).save
+            return {
+              organization: new_organization, 
+              pricing: new_organization.pricing,
+              status: 200
+            }
           else
             return {error: 'something went wrong, try later', status: 400}
           end
@@ -41,18 +38,19 @@ module API
         params do 
           requires :name, type: String
           requires :address, type: String
+          requires :contact_no, type: String
+          optional :email, type: String
         end
         post 'economy', root: :organization do
-          new_organization = Organization.new
-          new_organization.name = params[:name]
-          new_organization.account_type = 'economy'
-          new_organization.address = params[:address]
-          new_organization.status = 'active'
-          new_organization.price = 4500
-          new_organization.price_type = 'fixed'
+          organization_exisit!
+          params[:status] = 'active'
+          params[:shop_limit] = 5
+          params[:account_type] = 'economy'
+          new_organization = Organization.new(params)
           if new_organization.save
             User.unscoped.find(@current_user.id).update(organization_id: new_organization.id)
-            return {organization: new_organization, status: 300}
+            Pricing.new(price: 4500, price_type: 'fixed', currency: 'PKR', organization_id: new_organization.id).save
+            return {organization: new_organization, pricing: new_organization.pricing, status: 300}
           else
             return {error: 'something went wrong, try later', status: 400}
           end
@@ -62,19 +60,72 @@ module API
         params do 
           requires :name, type: String
           requires :address, type: String
+          requires :contact_no, type: String
+          optional :email, type: String
         end
         post 'pro', root: :organization do
-          new_organization = Organization.new
-          new_organization.name = params[:name]
-          new_organization.account_type = 'pro'
-          new_organization.address = params[:address]
-          new_organization.status = 'active'
-          new_organization.price = 0.5
-          new_organization.price_type = 'percentage'
+          organization_exisit!
+          params[:status] = 'active'
+          params[:shop_limit] = 1000
+          params[:account_type] = 'pro'
+          new_organization = Organization.new(params)
           if new_organization.save
             User.unscoped.find(@current_user.id).update(organization_id: new_organization.id)
-            return {organization: new_organization, status: 300}
+            Pricing.new(price: 0.5, price_type: 'percentage', currency: 'PKR', organization_id: new_organization.id).save
+            return {organization: new_organization, pricing: new_organization.pricing, status: 300}
           else
+            return {error: 'something went wrong, try later', status: 400}
+          end
+        end
+
+        desc 'update organization info'
+        params do
+          optional :name, type: String
+          optional :address, type: String
+          optional :contact_no, type: String
+          optional :email, type: String
+        end
+        put '', root: :organization do
+          organization_exisit?
+          organization_active?
+          return {
+            message: 'recode updated', 
+            organization: @current_user.organization, 
+            status: 200
+          } if @current_user.organization.update(params)
+          return{error: 'something went wrong, try later', status: 400}
+        end
+
+        desc 'delete a organization'
+        delete '', root: :organization do 
+          organization_exisit?
+          organization_active?
+          ActiveRecord::Base.transaction do
+            @current_user.organization.staffs.destroy_all
+            @current_user.organization.shops.destroy_all
+            @current_user.organization.pricing.destroy
+            @current_user.organization.destroy
+            return{message: 'organization deleted', status:200}
+          rescue ActiveRecord::RecordInvalid
+            error!({error: 'something went wrong, try later', status: 400})
+          end
+        end
+
+        desc 'return all shops'
+        get '/shops', root: :organization do
+          return {shops: @current_user.organization.shops, status: 200} if @current_user.organization.shops
+          return {message: 'no shop found', status: 300}
+        end
+
+        desc 'delete all shops'
+        delete '/shops', root: :organization do
+          ActiveRecord::Base.transaction do
+            @current_user.organization.shops.orders.destroy_all
+            @current_user.organization.shops.items.destroy_all
+            @current_user.organization.staffs.destroy_all
+            @current_user.organization.shops.destroy_all
+            return{message: 'shops deleted', status:200}
+          rescue exp
             return {error: 'something went wrong, try later', status: 400}
           end
         end

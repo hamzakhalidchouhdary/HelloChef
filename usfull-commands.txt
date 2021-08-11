@@ -1,6 +1,6 @@
 find and kill docker process id
   sudo docker ps //get container  id
-  ps aux | grep <<container id>> | awk '{print $2}' // get pid
+  ps aux | grep  | awk '{print $2}' // get pid
   sudo kill -9 <<pid>> // kill process by pid
 
 
