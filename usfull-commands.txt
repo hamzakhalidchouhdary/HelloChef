@@ -1,0 +1,12 @@
+find and kill docker process id
+  sudo docker ps //get container  id
+  ps aux | grep  | awk '{print $2}' // get pid
+  sudo kill -9 <<pid>> // kill process by pid
+
+
+password hash for test1 : $2a$12$1lHEHONPSdCih/oSDxEQB.x63mQNcPB9VvvTUM61OPQmfruqAI36.
+
+
+jwt for test1 :eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2MjgyNTAwNDF9.ODVmHDoikf0G4J4K5_c5CvfbNH8Eib1NYUDUyGcYCaw
+
+get "", root: :graduates do
