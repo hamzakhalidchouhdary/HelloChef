@@ -1,7 +1,7 @@
 # HelloChef
 ### Backend for resturant management
 
-HelloCef is API based web app build in Rails. One can design and integrate this code base to manage business logics.
+HelloChef is MVC-API based web app build using Rails. One can design and integrate this project to manage resturant business logics.
 
 There are following entities covered:
 - Admin
