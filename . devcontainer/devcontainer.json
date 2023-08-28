@@ -1,19 +1,17 @@
 {
-    "name": "Rails PostgreSQL",
-    "dockerComposeFile": "../docker-compose.yml",
-    "service": "web",
-    "extensions": ["dbaeumer.vscode-eslint"],
-    "settings": {
-      "terminal.integrated.shell.linux": "/bin/bash"
-    },
-    "forwardPorts": [3456],
-    "overrideCommand": false,
-    "settings": {
-      "postgresql.env": {
-        "POSTGRES_USER": "postgres",
-        "POSTGRES_PASSWORD": "123456",
-        "POSTGRES_DB": "HelloChef-DB"
-      }
+  "name": "Rails PostgreSQL",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "web",
+  "extensions": ["dbaeumer.vscode-eslint"],
+  "forwardPorts": [3456],
+  "overrideCommand": false,
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "postgresql.env": {
+      "POSTGRES_USER": "postgres",
+      "POSTGRES_PASSWORD": "123456",
+      "POSTGRES_DB": "HelloChef-DB"
     }
   }
+}
   
