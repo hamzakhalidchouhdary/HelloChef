@@ -12,23 +12,20 @@
 
 ActiveRecord::Schema.define(version: 2021_08_11_115125) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "bills", force: :cascade do |t|
     t.float "amount"
     t.string "month"
     t.boolean "is_paid"
     t.float "discount"
-    t.bigint "organization_id"
+    t.integer "organization_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["organization_id"], name: "index_bills_on_organization_id"
   end
 
   create_table "items", force: :cascade do |t|
-    t.bigint "shop_id"
-    t.bigint "staff_id"
+    t.integer "shop_id"
+    t.integer "staff_id"
     t.string "title"
     t.text "description"
     t.float "price"
@@ -41,9 +38,9 @@ ActiveRecord::Schema.define(version: 2021_08_11_115125) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "shop_id"
-    t.bigint "organization_id"
-    t.bigint "staff_id"
+    t.integer "shop_id"
+    t.integer "organization_id"
+    t.integer "staff_id"
     t.float "amount"
     t.float "discount"
     t.float "paid_ammount"
@@ -60,20 +57,18 @@ ActiveRecord::Schema.define(version: 2021_08_11_115125) do
     t.string "account_type"
     t.string "address"
     t.string "status"
-    t.float "price"
-    t.string "price_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "contact_no"
     t.string "email"
     t.integer "shop_limit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pricings", force: :cascade do |t|
     t.string "currency"
     t.string "price_type"
     t.float "price"
-    t.bigint "organization_id"
+    t.integer "organization_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["organization_id"], name: "index_pricings_on_organization_id"
@@ -82,7 +77,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_115125) do
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.bigint "organization_id"
+    t.integer "organization_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["organization_id"], name: "index_shops_on_organization_id"
@@ -92,22 +87,23 @@ ActiveRecord::Schema.define(version: 2021_08_11_115125) do
     t.string "username"
     t.string "password_digest"
     t.string "role"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "organization_id"
     t.string "shop_id"
     t.string "name"
     t.integer "salary"
     t.string "contact"
     t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.integer "organization_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "organization_id"
+    t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 
 end
