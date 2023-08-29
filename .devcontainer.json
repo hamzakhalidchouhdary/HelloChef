@@ -1,0 +1,8 @@
+{
+  "name": "HelloChef Rails",
+  "image": "ruby:3.0.1",
+  "extensions": ["rebornix.ruby"],
+  "settings": {},
+  "forwardPorts": [3456],
+}
+  
