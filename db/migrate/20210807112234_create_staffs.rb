@@ -1,15 +1,11 @@
 class CreateStaffs < ActiveRecord::Migration[6.1]
   def change
     create_table :staffs do |t|
-      t.string :username
-      t.string :password_digest
+      t.references :shop
       t.string :role
-      t.string :organization_id
-      t.string :shop_id
-      t.string :name
-      t.integer :salary
-      t.string :contact
-      t.string :address
+      t.float :salary
+      t.references :created_by, null: false, foreign_key: {to_table: :users}
+      t.references :updated_by, null: false, foreign_key: {to_table: :users}
       
       t.timestamps
     end
