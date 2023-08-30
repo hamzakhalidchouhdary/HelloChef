@@ -5,5 +5,4 @@ class Organization < ApplicationRecord
   has_many :orders
 
   has_one :user
-  has_one :pricing
 end

@@ -23,10 +23,8 @@ module API
           new_organization = Organization.new(params)
           if new_organization.save
             User.unscoped.find(@current_user.id).update(organization_id: new_organization.id)
-            Pricing.new(price: 1200, price_type: 'fixed', currency: 'PKR', organization_id: new_organization.id).save
             return {
               organization: new_organization, 
-              pricing: new_organization.pricing,
               status: 200
             }
           else
@@ -49,8 +47,7 @@ module API
           new_organization = Organization.new(params)
           if new_organization.save
             User.unscoped.find(@current_user.id).update(organization_id: new_organization.id)
-            Pricing.new(price: 4500, price_type: 'fixed', currency: 'PKR', organization_id: new_organization.id).save
-            return {organization: new_organization, pricing: new_organization.pricing, status: 300}
+            return {organization: new_organization, status: 300}
           else
             return {error: 'something went wrong, try later', status: 400}
           end
@@ -71,8 +68,7 @@ module API
           new_organization = Organization.new(params)
           if new_organization.save
             User.unscoped.find(@current_user.id).update(organization_id: new_organization.id)
-            Pricing.new(price: 0.5, price_type: 'percentage', currency: 'PKR', organization_id: new_organization.id).save
-            return {organization: new_organization, pricing: new_organization.pricing, status: 300}
+            return {organization: new_organization, status: 300}
           else
             return {error: 'something went wrong, try later', status: 400}
           end
@@ -103,7 +99,6 @@ module API
           ActiveRecord::Base.transaction do
             @current_user.organization.staffs.destroy_all
             @current_user.organization.shops.destroy_all
-            @current_user.organization.pricing.destroy
             @current_user.organization.destroy
             return{message: 'organization deleted', status:200}
           rescue ActiveRecord::RecordInvalid
