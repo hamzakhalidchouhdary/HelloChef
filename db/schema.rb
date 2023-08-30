@@ -25,31 +25,32 @@ ActiveRecord::Schema.define(version: 2021_08_11_115125) do
 
   create_table "items", force: :cascade do |t|
     t.integer "shop_id"
-    t.integer "staff_id"
+    t.integer "created_by_id", null: false
+    t.integer "updated_by_id", null: false
     t.string "title"
     t.text "description"
     t.float "price"
-    t.string "currency"
     t.string "icon"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_by_id"], name: "index_items_on_created_by_id"
     t.index ["shop_id"], name: "index_items_on_shop_id"
-    t.index ["staff_id"], name: "index_items_on_staff_id"
+    t.index ["updated_by_id"], name: "index_items_on_updated_by_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "shop_id"
-    t.integer "organization_id"
-    t.integer "staff_id"
+    t.integer "created_by_id", null: false
+    t.integer "updated_by_id", null: false
     t.float "amount"
     t.float "discount"
     t.float "paid_ammount"
     t.string "table_no"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["organization_id"], name: "index_orders_on_organization_id"
+    t.index ["created_by_id"], name: "index_orders_on_created_by_id"
     t.index ["shop_id"], name: "index_orders_on_shop_id"
-    t.index ["staff_id"], name: "index_orders_on_staff_id"
+    t.index ["updated_by_id"], name: "index_orders_on_updated_by_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -60,50 +61,71 @@ ActiveRecord::Schema.define(version: 2021_08_11_115125) do
     t.string "contact_no"
     t.string "email"
     t.integer "shop_limit"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "pricings", force: :cascade do |t|
-    t.string "currency"
     t.string "price_type"
     t.float "price"
-    t.integer "organization_id"
+    t.integer "created_by_id", null: false
+    t.integer "updated_by_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["organization_id"], name: "index_pricings_on_organization_id"
+    t.index ["created_by_id"], name: "index_organizations_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_organizations_on_updated_by_id"
   end
 
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.string "email"
+    t.string "currency"
     t.integer "organization_id"
+    t.integer "created_by_id", null: false
+    t.integer "updated_by_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_by_id"], name: "index_shops_on_created_by_id"
     t.index ["organization_id"], name: "index_shops_on_organization_id"
+    t.index ["updated_by_id"], name: "index_shops_on_updated_by_id"
   end
 
   create_table "staffs", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
+    t.integer "shop_id"
     t.string "role"
-    t.string "organization_id"
-    t.string "shop_id"
-    t.string "name"
-    t.integer "salary"
-    t.string "contact"
-    t.string "address"
+    t.float "salary"
+    t.integer "created_by_id", null: false
+    t.integer "updated_by_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_by_id"], name: "index_staffs_on_created_by_id"
+    t.index ["shop_id"], name: "index_staffs_on_shop_id"
+    t.index ["updated_by_id"], name: "index_staffs_on_updated_by_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.string "username"
     t.string "password_digest"
-    t.integer "organization_id"
+    t.string "contact_no"
+    t.string "email"
+    t.string "home_address"
+    t.string "type"
+    t.integer "created_by_id", null: false
+    t.integer "updated_by_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["organization_id"], name: "index_users_on_organization_id"
+    t.index ["created_by_id"], name: "index_users_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_users_on_updated_by_id"
   end
 
+  add_foreign_key "items", "users", column: "created_by_id"
+  add_foreign_key "items", "users", column: "updated_by_id"
+  add_foreign_key "orders", "users", column: "created_by_id"
+  add_foreign_key "orders", "users", column: "updated_by_id"
+  add_foreign_key "organizations", "users", column: "created_by_id"
+  add_foreign_key "organizations", "users", column: "updated_by_id"
+  add_foreign_key "shops", "users", column: "created_by_id"
+  add_foreign_key "shops", "users", column: "updated_by_id"
+  add_foreign_key "staffs", "users", column: "created_by_id"
+  add_foreign_key "staffs", "users", column: "updated_by_id"
+  add_foreign_key "users", "users", column: "created_by_id"
+  add_foreign_key "users", "users", column: "updated_by_id"
 end
