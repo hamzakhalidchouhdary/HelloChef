@@ -4,5 +4,5 @@ class Organization < ApplicationRecord
   has_many :bills
   has_many :orders
 
-  has_one :user
+  belongs_to :user
 end
