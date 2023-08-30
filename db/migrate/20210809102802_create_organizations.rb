@@ -10,6 +10,8 @@ class CreateOrganizations < ActiveRecord::Migration[6.1]
       t.integer :shop_limit
       t.string :price_type
       t.float :price
+      t.references :created_by, null: false, foreign_key: {to_table: :users}
+      t.references :updated_by, null: false, foreign_key: {to_table: :users}
       t.timestamps
     end
   end

@@ -4,6 +4,8 @@ class CreateShops < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :address
       t.references :organization
+      t.references :created_by, null: false, foreign_key: {to_table: :users}
+      t.references :updated_by, null: false, foreign_key: {to_table: :users}
 
       t.timestamps
     end
