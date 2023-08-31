@@ -74,5 +74,5 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.hosts << "glowing-disco-pw5pjg4r9jrhrxwp-3456.app.github.dev"
+  config.hosts << "glowing-disco-pw5pjg4r9jrhrxwp-3000.app.github.dev"
 end

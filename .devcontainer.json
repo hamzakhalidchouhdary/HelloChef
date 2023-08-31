@@ -3,6 +3,6 @@
   "build": { "dockerfile": "./dockerfile" },
   "extensions": ["rebornix.ruby"],
   "settings": {},
-  "forwardPorts": [3456],
+  "forwardPorts": [3000],
 }
   
