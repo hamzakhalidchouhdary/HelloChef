@@ -1,19 +1,19 @@
+# Debain Based Ruby 3.0.1
 FROM ruby:3.0.1
 
-RUN gem install rails bundler
 
-RUN gem install rails
+# throw errors if Gemfile has been modified since Gemfile.lock
+RUN bundle config --global frozen 1
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+WORKDIR /usr/src/app
 
-ENV PORT 3000
-
-
-ADD . /HelloChef-Docker
-
-WORKDIR /HelloChef-Docker
+COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
+
+COPY . .
+
+ENV PORT 3000
 
 EXPOSE $PORT
 
