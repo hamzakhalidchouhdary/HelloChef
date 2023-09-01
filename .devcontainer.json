@@ -1,8 +1,18 @@
 {
   "name": "HelloChef Rails",
-  "build": { "dockerfile": "./dockerfile" },
-  "extensions": ["rebornix.ruby"],
-  "settings": {},
-  "forwardPorts": [3000],
+  "build": {
+    "dockerfile": "./dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "rebornix.ruby",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "forwardPorts": [
+    3000
+  ]
 }
-  
