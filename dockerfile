@@ -2,6 +2,9 @@
 FROM node:16 AS nodejs
 
 COPY package.json package-lock.json ./
+
+RUN npm install -g @angular/cli
+
 RUN npm install
 
 # Debain Based Ruby 3.0.1
