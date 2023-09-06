@@ -22,7 +22,22 @@ import { NotificationService } from './services/notification/notification.servic
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      // Customize Toastr options here
+      positionClass: 'toast-top-right', // Position of notifications
+      preventDuplicates: true, // Prevent duplicate notifications
+      closeButton: true, // Show close button
+      progressBar: true, // Show progress bar
+      timeOut: 3000, // Time (in milliseconds) before auto-dismissing notifications
+      extendedTimeOut: 1000, // Additional time (in milliseconds) for extended timeout
+      // Apply custom classes to notification types
+      // toastClass: 'ngx-toastr',
+      // iconClasses: {
+      //   success: 'custom-success', // Apply custom success class
+      //   error: 'custom-error', // Apply custom error class
+      //   // Add custom classes for other notification types as needed
+      // }
+    })
   ],
   providers: [ProductService, NotificationService],
   bootstrap: [AppComponent]
