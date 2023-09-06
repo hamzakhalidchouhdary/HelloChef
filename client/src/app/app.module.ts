@@ -7,6 +7,9 @@ import { ProductsComponent } from './products/products.component';
 import { StaffComponent } from './staff/staff.component';
 import { ProductService } from './services/product/product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NotificationService } from './services/notification/notification.service';
 
 @NgModule({
   declarations: [
@@ -17,9 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [ProductService],
+  providers: [ProductService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
