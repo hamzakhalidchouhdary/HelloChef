@@ -24,7 +24,7 @@ RUN bundle install
 
 COPY . .
 
-ENV PORT 3000
+ENV PORT 4100
 
 EXPOSE $PORT
 
