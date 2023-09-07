@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  belongs_to :organization
+  # has_one :organization
   has_secure_password
   attr_accessor :role
   # def self.default_scope

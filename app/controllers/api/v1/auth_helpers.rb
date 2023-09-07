@@ -32,7 +32,7 @@ module API
 
       def find_shop
         if params[:shop_id].present?
-          @user_shop = @current_user.organization.shops.find{|e| e.id == params[:shop_id].to_i}
+          @user_shop = Shop.find_by(id: params[:shop_id].to_i)
           error!({error: 'shop not found', status: 400}) unless @user_shop
         else
           error!({error: 'shop_id is missing'})
