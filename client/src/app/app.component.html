@@ -3,9 +3,9 @@
     <img class="logo" src="" alt="HelloChef" />
   </div>
   <nav class="nav-wrapper d-flex h-100pc d-flex-align-center">
-    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/">dashboard</li>
-    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/products">Products</li>
-    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/staffs">Staffs</li>
+    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/" [ngClass]="{ 'active': isRootRouteActive }">dashboard</li>
+    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/products" routerLinkActive="active">Products</li>
+    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/staffs" routerLinkActive="active">Staffs</li>
   </nav>
   <div class="d-flex h-100pc d-flex-align-center">
     <img class="user-avatar" src="" alt="UI">

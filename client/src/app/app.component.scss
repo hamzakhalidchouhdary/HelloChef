@@ -27,5 +27,8 @@
         height: 4px;
       }
     }
+    li.active::after {
+      height: 4px;
+    }
   }
 }
