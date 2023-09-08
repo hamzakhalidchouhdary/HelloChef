@@ -6,7 +6,7 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private productUrl = 'http://127.0.0.1:41000/api/v1/item?shop_id=1';
+  private productUrl = 'http://127.0.0.1:4100/api/v1/item?shop_id=1';
 
   constructor(private httpClient: HttpClient) { }
 
