@@ -1,6 +1,47 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.user-avatar {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  position: relative;
+  &::after {
+    content: attr(alt);
+    background-color: bisque;
+    color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 35px;
+    width: inherit;
+    height: inherit;
+  }
+}
+.logo {
+  height: 35px;
+  font-family: Marker Felt, fantasy;
+  position: relative;
+  font-size: 20px;
+  &::after {
+    content: attr(alt);
+    background-color: #247CC9;
+    color: #fff;
+    font-weight: bolder;
+    font-family: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 35px;
+    width: 100%;
+    height: inherit;
+  }
 }
 .d-flex {
   display: flex
@@ -20,6 +61,12 @@
 .px-5 {
   padding: 0px 5px;
 } 
+.px-15 {
+  padding: 0px 15px;
+} 
 .px-40{
   padding: 0px 40px;
+}
+.h-100pc {
+  height: 100%;
 }

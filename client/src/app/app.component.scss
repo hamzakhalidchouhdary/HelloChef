@@ -1,6 +1,31 @@
 .app-header {
   height: 50px;
-  background-color: #aeaeae;
+  background-color: #247CC9;
   color: #fff;
   margin-bottom: 10px;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+  nav {
+    li {
+      list-style: none;
+      position: relative;
+      cursor: pointer;
+      width: 100%;
+      text-transform: capitalize;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        height: 0px;
+        width: inherit;
+        transition: all 175ms linear;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+      &:hover::after {
+        height: 4px;
+      }
+    }
+  }
 }

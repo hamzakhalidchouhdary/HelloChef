@@ -1,6 +1,15 @@
-<header class="app-header d-flex d-flex-align-center">
-  <a class="px-5" routerLink="/products">Products</a>
-  <a class="px-5" routerLink="/staffs">Staffs</a>
+<header class="app-header px-15 d-flex d-flex-space-btw d-flex-align-center">
+  <div class="d-flex h-100pc d-flex-align-center">
+    <img class="logo" src="" alt="HelloChef" />
+  </div>
+  <nav class="nav-wrapper d-flex h-100pc d-flex-align-center">
+    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/">dashboard</li>
+    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/products">Products</li>
+    <li class="px-5 d-flex h-100pc d-flex-align-center" routerLink="/staffs">Staffs</li>
+  </nav>
+  <div class="d-flex h-100pc d-flex-align-center">
+    <img class="user-avatar" src="" alt="UI">
+  </div>
 </header>
 <body class="px-40">
   <app-products></app-products>
