@@ -1,16 +1,18 @@
 <div *ngIf="isLoading" class="product_item">
   <ngx-skeleton-loader count="3" [theme]="{'margin-bottom': '0px', height: '15px'}" appearance="line"></ngx-skeleton-loader>
 </div>
-<div *ngIf="!isLoading" class="product_item">
-  <div class="product_header d-flex d-flex-space-btw d-flex-align-center">
-    <h4>Demo Product</h4>
-    <div class="d-flex d-flex-align-center">
-      <p>$ 5</p>
-      <div class="product_actions px-5">
-        <a class="px-5" href="#">Edit</a>
-        <a class="px-5" href="#">Remove</a>
+<div *ngIf="!isLoading">
+  <div *ngFor="let product of products" class="product_item">
+    <div class="product_header d-flex d-flex-space-btw d-flex-align-center">
+      <h4>{{product.title}}</h4>
+      <div class="d-flex d-flex-align-center">
+        <p>$ {{product.price}}</p>
+        <div class="product_actions px-5">
+          <a class="px-5" href="#">Edit</a>
+          <a class="px-5" href="#">Remove</a>
+        </div>
       </div>
     </div>
+    <div class="product_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores molestiae vero aperiam non tenetur facilis id exercitationem assumenda est illum unde dolorem beatae accusantium, ipsam, sunt quod perspiciatis, eaque alias.</div>
   </div>
-  <div class="product_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores molestiae vero aperiam non tenetur facilis id exercitationem assumenda est illum unde dolorem beatae accusantium, ipsam, sunt quod perspiciatis, eaque alias.</div>
 </div>
