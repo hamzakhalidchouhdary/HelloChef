@@ -9,10 +9,14 @@ import { NotificationService } from '../services/notification/notification.servi
 })
 export class ProductsComponent {
   constructor(private productService: ProductService, private notificationService: NotificationService) {}
+  isLoading: Boolean = true;
 
   ngOnInit() {
     this.productService.fetchProducts().subscribe(
-      (data) => { console.log(data); },
+      (data) => { 
+        this.isLoading = false;
+        console.log(data); 
+      },
       (error) => { 
         console.error(error); 
         this.notificationService.showSuccess('error occure')
