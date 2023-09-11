@@ -1,5 +1,7 @@
-<div *ngIf="isLoading" class="product_item">
-  <ngx-skeleton-loader count="3" [theme]="{'margin-bottom': '0px', height: '15px'}" appearance="line"></ngx-skeleton-loader>
+<div *ngIf="isLoading">
+  <div *ngFor="let skeleton of [].constructor(10)" class="product_item">
+    <ngx-skeleton-loader count="3" [theme]="{'margin-bottom': '0px', height: '15px'}" appearance="line"></ngx-skeleton-loader>
+  </div>
 </div>
 <div *ngIf="!isLoading">
   <div *ngFor="let product of products" class="product_item">
