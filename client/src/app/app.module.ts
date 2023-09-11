@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotificationService } from './services/notification/notification.service';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NotificationService } from './services/notification/notification.servic
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxSkeletonLoaderModule,
     ToastrModule.forRoot({
       // Customize Toastr options here
       positionClass: 'toast-top-right', // Position of notifications
