@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ProductService {
   constructor(private httpClient: HttpClient) { }
 
   fetchProducts(): Observable<any> {
-    const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjpudWxsfQ.tA1WN3SDRxjwfq08j2VjzWJnSPU8kLnvnN6jGfZSxaY`
+    const token = environment.userToken || '';
     const header = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
