@@ -12,8 +12,8 @@ export class ProductService {
   constructor(private httpClient: HttpClient) { }
 
   fetchProducts(): Observable<any> {
-    const token = environment.userToken || '';
-    const header = new HttpHeaders({
+    const token: string = environment.userToken || '';
+    const header: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
     })
