@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../services/product/product.service';
-import { NotificationService } from '../services/notification/notification.service';
+import { ProductService } from '../../services/product/product.service';
+import { NotificationService } from '../../services/notification/notification.service';
 
 interface Product {
   title: string;

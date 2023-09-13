@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductsComponent } from './products/products.component';
-import { StaffComponent } from './staff/staff.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { StaffComponent } from './pages/staff/staff.component';
 import { ProductService } from './services/product/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
