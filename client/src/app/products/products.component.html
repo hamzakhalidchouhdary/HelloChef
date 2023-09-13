@@ -4,7 +4,7 @@
   </div>
 </div>
 <div *ngIf="!isLoading">
-  <div class="product-actions d-flex d-flex-space-btw">
+  <div class="product-actions py-10 d-flex d-flex-justify-center">
     <input type="search" [(ngModel)]="filterString" />
   </div>
   <div *ngFor="let product of getProducts()" class="product_item">
