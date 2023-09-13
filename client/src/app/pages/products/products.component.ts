@@ -27,7 +27,7 @@ export class ProductsComponent {
     })
   };
 
-  ngOnInit() {
+  fetchProducts(): void {
     this.productService.fetchProducts().subscribe(
       (data) => { 
         this.isLoading = false;
@@ -38,5 +38,9 @@ export class ProductsComponent {
         this.notificationService.showSuccess('error occure')
       }
     );
+  }
+
+  ngOnInit() {
+    this.fetchProducts();
   }
 }
