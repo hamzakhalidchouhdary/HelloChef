@@ -8,9 +8,9 @@
 </div>
 <div *ngIf="!isLoading">
   <div class="product-actions py-10 d-flex d-flex-justify-center">
-    <input type="search" [(ngModel)]="filterString" />
+    <input type="search" [(ngModel)]="searchString" />
   </div>
-  <div *ngFor="let product of getProducts()" class="product_item">
+  <div *ngFor="let product of filterProducts()" class="product_item">
     <div class="product_header d-flex d-flex-space-btw d-flex-align-center">
       <h4>{{product.title}}</h4>
       <div class="d-flex d-flex-align-center">

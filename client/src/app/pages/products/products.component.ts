@@ -18,12 +18,12 @@ export class ProductsComponent {
   constructor(private productService: ProductService, private notificationService: NotificationService) {}
   isLoading: Boolean = true;
   products: Array<Product> = [];
-  filterString: string = '';
+  searchString: string = '';
 
-  getProducts(): Array<Product> {
-    if (!this.filterString) return this.products; 
+  filterProducts(): Array<Product> {
+    if (!this.searchString) return this.products; 
     return this.products.filter((product: Product) => {
-      return product.title.includes(this.filterString);
+      return product.title.includes(this.searchString);
     })
   };
 
