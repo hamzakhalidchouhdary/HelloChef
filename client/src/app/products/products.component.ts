@@ -18,6 +18,14 @@ export class ProductsComponent {
   constructor(private productService: ProductService, private notificationService: NotificationService) {}
   isLoading: Boolean = true;
   products: Array<Product> = [];
+  filterString: string = '';
+
+  getProducts(): Array<Product> {
+    if (!this.filterString) return this.products; 
+    return this.products.filter((product: Product) => {
+      return product.title.includes(this.filterString);
+    })
+  };
 
   ngOnInit() {
     this.productService.fetchProducts().subscribe(
