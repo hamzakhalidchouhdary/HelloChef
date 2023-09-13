@@ -52,6 +52,9 @@
 .d-flex-space-btw {
   justify-content: space-between
 }
+.d-flex-justify-center {
+  justify-content: center
+}
 .d-flex-align-center {
   align-items: center
 }
@@ -66,6 +69,9 @@
 } 
 .px-40{
   padding: 0px 40px;
+}
+.py-10{
+  padding: 10px 0px;
 }
 .h-100pc {
   height: 100%;
