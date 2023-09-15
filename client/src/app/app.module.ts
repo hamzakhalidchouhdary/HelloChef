@@ -13,12 +13,14 @@ import { NotificationService } from './services/notification/notification.servic
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    StaffComponent
+    StaffComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
