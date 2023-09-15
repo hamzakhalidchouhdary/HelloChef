@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotificationService } from './services/notification/notification.service';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     NgxSkeletonLoaderModule,
     FormsModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       // Customize Toastr options here
       positionClass: 'toast-top-right', // Position of notifications
