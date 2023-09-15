@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../services/product/product.service';
 import { NotificationService } from '../../services/notification/notification.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EditProductComponent } from 'src/app/components/edit-product/edit-product.component';
 
 interface Product {
   title: string;
@@ -15,7 +17,7 @@ interface Product {
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-  constructor(private productService: ProductService, private notificationService: NotificationService) {}
+  constructor(private productService: ProductService, private notificationService: NotificationService, private dialog: MatDialog) {}
   isLoading: Boolean = true;
   products: Array<Product> = [];
   searchString: string = '';
@@ -26,6 +28,14 @@ export class ProductsComponent {
       return product.title.includes(this.searchString);
     })
   };
+
+  editProduct() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(EditProductComponent, dialogConfig);
+  }
 
   fetchProducts(): void {
     this.productService.fetchProducts().subscribe(
