@@ -14,6 +14,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     NgxSkeletonLoaderModule,
     FormsModule,
     MatInputModule,
+    MatButtonModule,
     MatDialogModule,
     ToastrModule.forRoot({
       // Customize Toastr options here
