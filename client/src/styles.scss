@@ -84,6 +84,9 @@ $client-theme: mat.define-light-theme((
 .d-flex-row {
   flex-direction: row
 }
+.d-flex-col {
+  flex-direction: column
+}
 .d-flex-space-btw {
   justify-content: space-between
 }
