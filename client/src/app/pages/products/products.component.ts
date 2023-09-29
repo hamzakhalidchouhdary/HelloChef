@@ -29,10 +29,11 @@ export class ProductsComponent {
     })
   };
 
-  editProduct() {
+  editProduct(targetProduct: Product) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.data = targetProduct;
 
     this.dialog.open(EditProductComponent, dialogConfig);
   }

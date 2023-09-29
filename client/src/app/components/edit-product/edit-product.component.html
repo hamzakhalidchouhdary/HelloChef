@@ -3,15 +3,15 @@
   <form action="#" class="d-flex d-flex-col">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput placeholder="Name" />
+      <input matInput placeholder="Name" [(ngModel)]="product.title" name="title" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Price</mat-label>
-      <input matInput placeholder="Price" />
+      <input matInput placeholder="Price" [(ngModel)]="product.price" name="price" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Description</mat-label>
-      <textarea matInput placeholder="Description" ></textarea>
+      <textarea matInput placeholder="Description" [(ngModel)]="product.description" name="description" ></textarea>
     </mat-form-field>
   </form>
   
