@@ -29,6 +29,12 @@ export class ProductsComponent {
     })
   };
 
+  newProduct() {
+    let newProduct: Product = {} as Product;
+    this.editProduct(newProduct);
+    this.products.push(newProduct);
+  }
+
   editProduct(targetProduct: Product) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

@@ -9,6 +9,7 @@
 <div *ngIf="!isLoading">
   <div class="product-actions py-10 d-flex d-flex-justify-center">
     <input type="search" [(ngModel)]="searchString" />
+    <a (click)="newProduct()">New</a>
   </div>
   <div *ngFor="let product of filterProducts()" class="product_item">
     <div class="product_header d-flex d-flex-space-btw d-flex-align-center">
