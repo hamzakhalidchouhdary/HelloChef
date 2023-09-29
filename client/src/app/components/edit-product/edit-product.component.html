@@ -1,4 +1,7 @@
 <div class="product-form p-10">
+  <div *ngIf="isSaving" class="spinner d-flex d-flex-justify-center d-flex-align-center">
+    <mat-spinner></mat-spinner>
+  </div>
   <h1 class="mb-15">Edit Product</h1>
   <form action="#" class="d-flex d-flex-col">
     <mat-form-field>

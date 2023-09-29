@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 @NgModule({
@@ -34,6 +35,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       // Customize Toastr options here
       positionClass: 'toast-top-right', // Position of notifications
