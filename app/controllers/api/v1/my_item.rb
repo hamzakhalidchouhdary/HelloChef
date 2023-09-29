@@ -36,8 +36,8 @@ module API
           requires :title, type: String
           requires :description, type: String
           requires :price, type: Integer
-          optional :currency, type: String, default: 'PKR'
-          requires :staff_id, type: String
+          # optional :currency, type: String, default: 'PKR'
+          requires :created_by_id, type: String
           optional :icon, type: String
 
         end
