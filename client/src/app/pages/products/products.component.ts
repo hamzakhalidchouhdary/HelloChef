@@ -31,6 +31,7 @@ export class ProductsComponent {
 
   discardChanges(productBackUp: Product) {
     const targetProductIndex = this.products.findIndex((product) => product.id == productBackUp.id);
+    if (targetProductIndex < 0) return;
     this.products.splice(targetProductIndex, 1, productBackUp);
   }
 
