@@ -44,6 +44,18 @@ export class ProductsComponent {
     this.dialog.open(EditProductComponent, dialogConfig);
   }
 
+  removeProduct(id: Number) {
+    this.productService.removeProduct(id).subscribe(
+      (data) => {
+        const targetProductIndex = this.products.findIndex((product) => product.id == id);
+        this.products.splice(targetProductIndex, 1);
+      },
+      (error) => {
+
+      }
+    );
+  }
+
   fetchProducts(): void {
     this.productService.fetchProducts().subscribe(
       (data) => { 

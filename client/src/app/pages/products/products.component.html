@@ -18,7 +18,7 @@
         <p>$ {{product.price}}</p>
         <div class="product_actions px-5">
           <a class="px-5" (click)="editProduct(product)">Edit</a>
-          <a class="px-5" href="#">Remove</a>
+          <a class="px-5" (click)="removeProduct(product.id)">Remove</a>
         </div>
       </div>
     </div>
