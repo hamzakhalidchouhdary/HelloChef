@@ -28,4 +28,22 @@ export class ProductService {
       })
     );
   }
+  saveProduct(payload: any): Observable<any> {
+    const token: string = environment.userToken || '';
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    })
+    console.log(payload);
+    return this.httpClient
+      .put<any>(`http://127.0.0.1:4100/api/v1/item/${payload.id}`,payload, {headers: header})
+      .pipe(catchError((error: any) => {
+        return throwError(() => {
+          let err = new Error('error in saving products');
+          err.message = error.error.error;
+          return err;
+        });
+      })
+    );
+  }
 }
