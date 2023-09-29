@@ -13,7 +13,7 @@ export class EditProductComponent {
   save() :void {
     this.productService.saveProduct(this.product).subscribe(
       (data) => {
-        this.dialogRef.close()
+        this.dialogRef.close('SAVED')
       },
       (error) => {
         console.error('error in saving product', error);
@@ -27,7 +27,7 @@ export class EditProductComponent {
       (data) => {
         console.log(data);
         this.product.id = data.items.id
-        this.dialogRef.close()
+        this.dialogRef.close('CREATED')
       },
       (error) => {
         console.error('error in creating product', error);
@@ -37,6 +37,6 @@ export class EditProductComponent {
 
   close() :void {
     console.log('closing dialog');
-    this.dialogRef.close();
+    this.dialogRef.close('DISCARDED');
   }
 }

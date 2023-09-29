@@ -29,10 +29,14 @@ export class ProductsComponent {
     })
   };
 
+  discardChanges(productBackUp: Product) {
+    const targetProductIndex = this.products.findIndex((product) => product.id == productBackUp.id);
+    this.products.splice(targetProductIndex, 1, productBackUp);
+  }
+
   newProduct() {
     let newProduct: Product = {} as Product;
     this.editProduct(newProduct);
-    this.products.push(newProduct);
   }
 
   editProduct(targetProduct: Product) {
@@ -40,8 +44,23 @@ export class ProductsComponent {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = targetProduct;
+    const productBackUp: Product = {...targetProduct};
 
-    this.dialog.open(EditProductComponent, dialogConfig);
+    this.dialog
+      .open(EditProductComponent, dialogConfig)
+      .afterClosed()
+      .subscribe((status: String) => {
+        switch(status) {
+          case 'SAVED':
+            break;
+          case 'CREATED':
+            this.products.push(targetProduct);
+            break;
+          case 'DISCARDED':
+            this.discardChanges(productBackUp);
+            break;
+        }
+      });
   }
 
   removeProduct(id: Number) {
