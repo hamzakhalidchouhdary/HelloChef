@@ -25,7 +25,6 @@ export class EditProductComponent {
   create(): void {
     this.productService.createProduct(this.product).subscribe(
       (data) => {
-        console.log(data);
         this.product.id = data.items.id
         this.dialogRef.close('CREATED')
       },
@@ -36,7 +35,6 @@ export class EditProductComponent {
   }
 
   close() :void {
-    console.log('closing dialog');
     this.dialogRef.close('DISCARDED');
   }
 }
