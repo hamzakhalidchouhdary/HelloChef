@@ -65,28 +65,28 @@ export class ProductsComponent {
   }
 
   removeProduct(id: Number) {
-    this.productService.removeProduct(id).subscribe(
-      (data) => {
+    this.productService.removeProduct(id).subscribe({
+      next: (data) => {
         const targetProductIndex = this.products.findIndex((product) => product.id == id);
         this.products.splice(targetProductIndex, 1);
       },
-      (error) => {
-
-      }
-    );
+      error: (error) => {},
+      complete: undefined
+    });
   }
 
   fetchProducts(): void {
-    this.productService.fetchProducts().subscribe(
-      (data) => { 
+    this.productService.fetchProducts().subscribe({
+      next: (data) => { 
         this.isLoading = false;
         this.products = data.items;
       },
-      (error) => { 
+      error: (error) => { 
         console.error(error); 
         this.notificationService.showSuccess('error occure')
-      }
-    );
+      },
+      complete: undefined
+    });
   }
 
   ngOnInit() {

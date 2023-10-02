@@ -13,35 +13,35 @@ export class EditProductComponent {
   isSaving: Boolean = false;
   save() :void {
     this.isSaving = true;
-    this.productService.saveProduct(this.product).subscribe(
-      (data) => {
+    this.productService.saveProduct(this.product).subscribe({
+      next: (data) => {
         this.dialogRef.close('SAVED')
       },
-      (error) => {
+      error: (error) => {
         console.error('error in saving product', error);
       },
-      () => {       
+      complete: () => {       
         this.isSaving = false;
       }
-    );
+    });
     // this.close();
   }
 
   create(): void {
     this.isSaving = true;
-    this.productService.createProduct(this.product).subscribe(
-      (data) => {
+    this.productService.createProduct(this.product).subscribe({
+      next: (data) => {
         this.product.id = data.items.id
         this.dialogRef.close('CREATED')
       },
-      (error) => {
+      error: (error) => {
         this.isSaving = false;
         console.error('error in creating product', error);
       },
-      () => {
+      complete: () => {
         this.isSaving = false;
       }
-    );
+    });
   }
 
   close() :void {
