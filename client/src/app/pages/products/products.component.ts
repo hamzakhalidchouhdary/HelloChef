@@ -83,7 +83,7 @@ export class ProductsComponent {
       },
       error: (error) => { 
         console.error(error); 
-        this.notificationService.showSuccess('error occure')
+        this.notificationService.showError('error occure')
       },
       complete: undefined
     });
