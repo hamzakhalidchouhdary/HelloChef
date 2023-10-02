@@ -24,7 +24,6 @@ export class EditProductComponent {
         this.isSaving = false;
       }
     });
-    // this.close();
   }
 
   create(): void {
