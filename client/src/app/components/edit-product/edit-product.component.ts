@@ -6,26 +6,31 @@ import { ProductService } from 'src/app/services/product/product.service';
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
-  styleUrls: ['./edit-product.component.scss']
+  styleUrls: ['./edit-product.component.scss'],
 })
 export class EditProductComponent {
-  constructor (private productService: ProductService, private dialogRef: MatDialogRef<EditProductComponent>, @Inject(MAT_DIALOG_DATA) public product: any, private notificationService: NotificationService) {}
+  constructor(
+    private productService: ProductService,
+    private dialogRef: MatDialogRef<EditProductComponent>,
+    @Inject(MAT_DIALOG_DATA) public product: any,
+    private notificationService: NotificationService
+  ) { }
 
   isSaving: Boolean = false;
-  save() :void {
+  save(): void {
     this.isSaving = true;
     this.productService.saveProduct(this.product).subscribe({
       next: (data) => {
         this.notificationService.showSuccess('Product Updated');
-        this.dialogRef.close('SAVED')
+        this.dialogRef.close('SAVED');
       },
       error: (error) => {
         this.isSaving = false;
         this.notificationService.showError('Error in updating Product');
       },
-      complete: () => {       
+      complete: () => {
         this.isSaving = false;
-      }
+      },
     });
   }
 
@@ -33,9 +38,9 @@ export class EditProductComponent {
     this.isSaving = true;
     this.productService.createProduct(this.product).subscribe({
       next: (data) => {
-        this.product.id = data.items.id
+        this.product.id = data.items.id;
         this.notificationService.showSuccess('New Product Added');
-        this.dialogRef.close('CREATED')
+        this.dialogRef.close('CREATED');
       },
       error: (error) => {
         this.isSaving = false;
@@ -43,11 +48,11 @@ export class EditProductComponent {
       },
       complete: () => {
         this.isSaving = false;
-      }
+      },
     });
   }
 
-  close() :void {
+  close(): void {
     this.dialogRef.close('DISCARDED');
   }
 }

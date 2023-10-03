@@ -9,28 +9,34 @@ interface Product {
   id: number;
   description: string;
   price: number;
-};
+}
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
-  constructor(private productService: ProductService, private notificationService: NotificationService, private dialog: MatDialog) {}
+  constructor(
+    private productService: ProductService,
+    private notificationService: NotificationService,
+    private dialog: MatDialog
+  ) {}
   isLoading: Boolean = true;
   products: Array<Product> = [];
   searchString: string = '';
 
   filterProducts(): Array<Product> {
-    if (!this.searchString) return this.products; 
+    if (!this.searchString) return this.products;
     return this.products.filter((product: Product) => {
       return product.title.includes(this.searchString);
-    })
-  };
+    });
+  }
 
   discardChanges(productBackUp: Product) {
-    const targetProductIndex = this.products.findIndex((product) => product.id == productBackUp.id);
+    const targetProductIndex = this.products.findIndex(
+      (product) => product.id == productBackUp.id
+    );
     if (targetProductIndex < 0) return;
     this.products.splice(targetProductIndex, 1, productBackUp);
   }
@@ -45,13 +51,13 @@ export class ProductsComponent {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = targetProduct;
-    const productBackUp: Product = {...targetProduct};
+    const productBackUp: Product = { ...targetProduct };
 
     this.dialog
       .open(EditProductComponent, dialogConfig)
       .afterClosed()
       .subscribe((status: String) => {
-        switch(status) {
+        switch (status) {
           case 'SAVED':
             break;
           case 'CREATED':
@@ -67,25 +73,27 @@ export class ProductsComponent {
   removeProduct(id: Number) {
     this.productService.removeProduct(id).subscribe({
       next: (data) => {
-        const targetProductIndex = this.products.findIndex((product) => product.id == id);
+        const targetProductIndex = this.products.findIndex(
+          (product) => product.id == id
+        );
         this.products.splice(targetProductIndex, 1);
       },
       error: (error) => {},
-      complete: undefined
+      complete: undefined,
     });
   }
 
   fetchProducts(): void {
     this.productService.fetchProducts().subscribe({
-      next: (data) => { 
+      next: (data) => {
         this.isLoading = false;
         this.products = data.items;
       },
-      error: (error) => { 
-        console.error(error); 
-        this.notificationService.showError('error occure')
+      error: (error) => {
+        console.error(error);
+        this.notificationService.showError('error occure');
       },
-      complete: undefined
+      complete: undefined,
     });
   }
 

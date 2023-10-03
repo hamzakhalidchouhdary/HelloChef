@@ -3,15 +3,31 @@
     <img class="logo" src="" alt="HelloChef" />
   </div>
   <nav class="nav-wrapper d-flex h-100pc d-flex-align-center">
-    <li class="px-5 d-flex h-100pc d-flex-align-center" [routerLink]="['/']" [ngClass]="{ 'active': isRootRouteActive }">dashboard</li>
-    <li class="px-5 d-flex h-100pc d-flex-align-center" [routerLink]="['/products']" [routerLinkActive]="['active']">Products</li>
-    <li class="px-5 d-flex h-100pc d-flex-align-center" [routerLink]="['/staffs']" [routerLinkActive]="['active']">Staffs</li>
+    <li
+      class="px-5 d-flex h-100pc d-flex-align-center"
+      [routerLink]="['/']"
+      [ngClass]="{ active: isRootRouteActive }"
+    >
+      dashboard
+    </li>
+    <li
+      class="px-5 d-flex h-100pc d-flex-align-center"
+      [routerLink]="['/products']"
+      [routerLinkActive]="['active']"
+    >
+      Products
+    </li>
+    <li
+      class="px-5 d-flex h-100pc d-flex-align-center"
+      [routerLink]="['/staffs']"
+      [routerLinkActive]="['active']"
+    >
+      Staffs
+    </li>
   </nav>
   <div class="user-setting d-flex h-100pc d-flex-align-center">
-    <img class="user-avatar" src="" alt="UI">
-    <div class="user-setting-menu">
-
-    </div>
+    <img class="user-avatar" src="" alt="UI" />
+    <div class="user-setting-menu"></div>
   </div>
 </header>
 <body class="px-40">
@@ -19,5 +35,3 @@
   <router-outlet></router-outlet>
 </body>
 <footer></footer>
-
-
