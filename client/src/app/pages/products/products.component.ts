@@ -3,13 +3,7 @@ import { ProductService } from '../../services/product/product.service';
 import { NotificationService } from '../../services/notification/notification.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditProductComponent } from 'src/app/components/edit-product/edit-product.component';
-
-interface Product {
-  title: string;
-  id: number;
-  description: string;
-  price: number;
-}
+import Product from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-products',

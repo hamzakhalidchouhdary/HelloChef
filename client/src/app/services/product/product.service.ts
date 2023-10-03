@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import Product from 'src/app/models/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,7 @@ export class ProductService {
       })
     );
   }
-  saveProduct(payload: any): Observable<any> {
+  saveProduct(payload: Product): Observable<any> {
     const token: string = environment.userToken || '';
     const header: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -47,7 +48,7 @@ export class ProductService {
         })
       );
   }
-  createProduct(payload: any): Observable<any> {
+  createProduct(payload: Product): Observable<any> {
     const token: string = environment.userToken || '';
     const header: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
