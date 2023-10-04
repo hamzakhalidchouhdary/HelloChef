@@ -6,4 +6,5 @@ export default interface Product {
   shop_id: number;
   created_by_id: number;
   updated_by_id: number;
+  labels: Array<string>
 }

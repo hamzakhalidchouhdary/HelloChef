@@ -15,8 +15,11 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatChipEditedEvent, MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    MatChipsModule,
+    MatIconModule,
     MatProgressSpinnerModule,
     ToastrModule.forRoot({
       // Customize Toastr options here

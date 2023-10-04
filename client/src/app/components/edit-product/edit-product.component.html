@@ -35,8 +35,25 @@
         name="description"
       ></textarea>
     </mat-form-field>
+    <mat-form-field class="example-chip-list">
+      <mat-label>Favorite Fruits</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Fruit selection">
+        <mat-chip-row *ngFor="let label of product.labels">
+          {{ label }}
+          <button matChipRemove [attr.aria-label]="'remove ' + label">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input
+        #fruitInput
+        placeholder="New Fruit..."
+        [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-form-field>
   </form>
-
   <div>
     <button mat-stroked-button class="mr-5" (click)="close()">Close</button>
     <button mat-stroked-button *ngIf="product.id" (click)="save()">Save</button>

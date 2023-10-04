@@ -31,5 +31,10 @@
       </div>
     </div>
     <div class="product_description">{{ product.description }}</div>
+    <div>
+      <mat-chip-listbox aria-label="Dog selection">
+        <mat-chip *ngFor="let label of product.labels">{{label}}</mat-chip>
+      </mat-chip-listbox>
+    </div>
   </div>
 </div>
