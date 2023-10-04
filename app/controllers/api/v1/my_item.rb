@@ -39,6 +39,7 @@ module API
           # optional :currency, type: String, default: 'PKR'
           requires :created_by_id, type: String
           optional :icon, type: String
+          optional :labels, type: Array[String]
 
         end
         post '', root: :item do

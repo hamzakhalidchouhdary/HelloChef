@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_115125) do
+ActiveRecord::Schema.define(version: 2023_10_04_135541) do
 
   create_table "bills", force: :cascade do |t|
     t.float "amount"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_115125) do
     t.string "icon"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "labels"
     t.index ["created_by_id"], name: "index_items_on_created_by_id"
     t.index ["shop_id"], name: "index_items_on_shop_id"
     t.index ["updated_by_id"], name: "index_items_on_updated_by_id"
