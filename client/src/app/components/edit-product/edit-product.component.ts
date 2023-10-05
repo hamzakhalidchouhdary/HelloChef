@@ -56,7 +56,7 @@ export class EditProductComponent {
     });
   }
 
-  add(event: MatChipInputEvent): void {
+  addProductLabel(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our label
@@ -69,17 +69,17 @@ export class EditProductComponent {
     event.chipInput!.clear();
   }
 
-  remove(label: string): void {
+  removeProductLabel(label: string): void {
     const index = this.product.labels.indexOf(label);
     if (index >= 0) this.product.labels.splice(index, 1);
   }
 
-  edit(label: string, event: MatChipEditedEvent) {
+  editProductLabel(label: string, event: MatChipEditedEvent) {
     const value = event.value.trim();
 
     // Remove label if it no longer has a name
     if (!value) {
-      this.remove(label);
+      this.removeProductLabel(label);
       return;
     }
 

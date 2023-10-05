@@ -41,8 +41,8 @@
         <mat-chip-row
           *ngFor="let label of product.labels"
           [editable]="true"
-          (edited)="edit(label, $event)"
-          (removed)="remove(label)"
+          (edited)="editProductLabel(label, $event)"
+          (removed)="removeProductLabel(label)"
         >
           {{ label }}
           <button matChipRemove [attr.aria-label]="'remove ' + label">
@@ -54,7 +54,7 @@
           [matChipInputFor]="chipGrid"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           [matChipInputAddOnBlur]="true"
-          (matChipInputTokenEnd)="add($event)"
+          (matChipInputTokenEnd)="addProductLabel($event)"
         />
       </mat-chip-grid>
     </mat-form-field>
