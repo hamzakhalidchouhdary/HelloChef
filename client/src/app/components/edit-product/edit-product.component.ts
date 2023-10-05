@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatChipInputEvent, MatChipEditedEvent } from '@angular/material/chips';
 import Product from 'src/app/models/product.model';
 
 @Component({
@@ -59,7 +59,7 @@ export class EditProductComponent {
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
+    // Add our label
     if (value) {
       if (!this.product.labels) this.product.labels = [];
       this.product.labels.push(value);
@@ -67,6 +67,27 @@ export class EditProductComponent {
 
     // Clear the input value
     event.chipInput!.clear();
+  }
+
+  remove(label: string): void {
+    const index = this.product.labels.indexOf(label);
+    if (index >= 0) this.product.labels.splice(index, 1);
+  }
+
+  edit(label: string, event: MatChipEditedEvent) {
+    const value = event.value.trim();
+
+    // Remove label if it no longer has a name
+    if (!value) {
+      this.remove(label);
+      return;
+    }
+
+    // Edit existing label
+    const index = this.product.labels.indexOf(label);
+    if (index >= 0) {
+      this.product.labels[index] = value;
+    }
   }
 
   close(): void {

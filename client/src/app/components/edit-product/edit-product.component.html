@@ -38,7 +38,12 @@
     <mat-form-field class="product-label-field">
       <mat-label>Product Labels</mat-label>
       <mat-chip-grid #chipGrid aria-label="Product label selection">
-        <mat-chip-row *ngFor="let label of product.labels">
+        <mat-chip-row
+          *ngFor="let label of product.labels"
+          [editable]="true"
+          (edited)="edit(label, $event)"
+          (removed)="remove(label)"
+        >
           {{ label }}
           <button matChipRemove [attr.aria-label]="'remove ' + label">
             <mat-icon>cancel</mat-icon>
