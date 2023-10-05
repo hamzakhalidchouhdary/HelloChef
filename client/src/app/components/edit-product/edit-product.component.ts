@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { MatChipEditedEvent, MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatChipInputEvent } from '@angular/material/chips';
 import Product from 'src/app/models/product.model';
 
 @Component({
