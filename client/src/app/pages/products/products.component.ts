@@ -4,6 +4,7 @@ import { NotificationService } from '../../services/notification/notification.se
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditProductComponent } from 'src/app/components/edit-product/edit-product.component';
 import Product from 'src/app/models/product.model';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-products',
@@ -45,7 +46,7 @@ export class ProductsComponent {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = targetProduct;
-    const productBackUp: Product = { ...targetProduct };
+    const productBackUp: Product =  _.cloneDeep(targetProduct);
 
     this.dialog
       .open(EditProductComponent, dialogConfig)
