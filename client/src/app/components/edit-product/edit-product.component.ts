@@ -61,7 +61,6 @@ export class EditProductComponent {
 
     // Add our label
     if (value) {
-      if (!this.product.labels) this.product.labels = [];
       this.product.labels.push(value);
     }
 

@@ -37,7 +37,7 @@ export class ProductsComponent {
   }
 
   newProduct() {
-    let newProduct: Product = {} as Product;
+    let newProduct: Product = { labels: [] } as unknown as Product;
     this.editProduct(newProduct);
   }
 
