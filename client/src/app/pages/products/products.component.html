@@ -19,22 +19,24 @@
     <input type="search" [(ngModel)]="searchString" />
     <a (click)="newProduct()">New</a>
   </div>
-  <div *ngFor="let product of filterProducts()" class="product_item">
-    <div class="product_header d-flex d-flex-space-btw d-flex-align-center">
-      <h4>{{ product.title }}</h4>
-      <div class="d-flex d-flex-align-center">
-        <p>$ {{ product.price }}</p>
-        <div class="product_actions px-5">
-          <a class="px-5" (click)="editProduct(product)">Edit</a>
-          <a class="px-5" (click)="removeProduct(product.id)">Remove</a>
+  <div class="d-flex d-flex-space-btw product-wrapper">
+    <div *ngFor="let product of filterProducts()" class="product_item">
+      <div class="product_header d-flex d-flex-space-btw d-flex-align-center">
+        <h4>{{ product.title }}</h4>
+        <div class="d-flex d-flex-align-center">
+          <p>$ {{ product.price }}</p>
+          <div class="product_actions px-5">
+            <a class="px-5" (click)="editProduct(product)">Edit</a>
+            <a class="px-5" (click)="removeProduct(product.id)">Remove</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="product_description">{{ product.description }}</div>
-    <div>
-      <mat-chip-listbox aria-label="Dog selection">
-        <mat-chip *ngFor="let label of product.labels">{{label}}</mat-chip>
-      </mat-chip-listbox>
+      <div class="product_description">{{ product.description }}</div>
+      <div>
+        <mat-chip-listbox aria-label="Dog selection">
+          <mat-chip *ngFor="let label of product.labels">{{label}}</mat-chip>
+        </mat-chip-listbox>
+      </div>
     </div>
   </div>
 </div>

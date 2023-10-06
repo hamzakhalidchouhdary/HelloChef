@@ -1,8 +1,16 @@
+.product-wrapper {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+
+}
 .product_item {
   border-radius: 4px;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
+  margin: 0px 10px;
   margin-bottom: 10px;
+  width: 200px;
 }
 .product_header {
   margin-bottom: 5px;
